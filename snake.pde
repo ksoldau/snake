@@ -13,14 +13,6 @@ int restart_width;
 int restart_height;
 int frame_rate;
 
-PImage katey;
-PImage haley;
-PImage nikki;
-PImage ryan;
-PImage katie;
-
-PImage sloris;
-
 //did the game end?
 boolean END;
 
@@ -56,24 +48,6 @@ void setup() {
   textFont(font);
   randomFoodCoordinates();
   START_SCREEN = true;
-
-  //set up the pictures
-  katey = loadImage("data/katey.png");
-  haley = loadImage("data/haley.png");
-  nikki = loadImage("data/nikki.png");
-  ryan = loadImage("data/ryan.png");
-  katie = loadImage("data/katie.png");
-
-  sloris = loadImage("data/sloris.png");
-
-  //resize the images
-  /*katey.resize(gridSize, gridSize);
-   haley.resize(gridSize, gridSize);
-   nikki.resize(gridSize, gridSize);
-   ryan.resize(gridSize, gridSize);
-   katie.resize(gridSize, gridSize);
-   
-   sloris.resize(gridSize, gridSize);*/
 
 
 
@@ -178,9 +152,9 @@ boolean cursorOverStartButton() {
 }
 
 void drawScore() {
+  fill(100);
   textSize(30);
   text(score, 40, 40);
-  fill(255);
 }
 
 // register key presses
@@ -203,7 +177,7 @@ void keyPressed() {
 void placeFood() {
   int new_x = food_x * gridSize;
   int new_y = food_y * gridSize;
-  image(sloris, new_x, new_y);
+  fill(200);
   if (ateFood()) {
     score = score + 10;
     //create a new random position for the food
@@ -213,12 +187,15 @@ void placeFood() {
       placeFood();
     }
   }
+  rect(new_x, new_y, gridSize, gridSize);
 }
 
 void randomFoodCoordinates() {
   food_x = (floor(random((right_wall/gridSize))));
   food_y = (floor(random((bottom_wall/gridSize))));
 }
+
+  
 
 void updateFood() {
   if (ateFood()) {
@@ -240,21 +217,8 @@ void drawSnake() {
     int new_x = xcord * gridSize;
     int new_y = ycord * gridSize;
 
-    if (i % 5 == 0) {
-      image(katey, new_x, new_y);
-    }
-    else if (i % 5 == 1) {
-      image (haley, new_x, new_y);
-    }
-    else if (i % 5 == 2) {
-      image (nikki, new_x, new_y);
-    }
-    else if (i % 5 == 3) {
-      image (ryan, new_x, new_y);
-    }
-    else if (i % 5 == 4) {
-      image (katie, new_x, new_y);
-    }
+fill(100);
+rect(new_x, new_y, gridSize, gridSize);
   }
 }
 
